@@ -49,10 +49,11 @@ class Confesion extends \Library\WhatsApp\Module\Base {
     	$feedarray = json_decode($json_object);
     	$feedarray=$feedarray->data;
     	$feedarray=(Array)$feedarray[rand(1,$limit-1)];
-   		$this->say($feedarray['message']);
-    }
-    public function search($q) {
-    	//TODO
-    	return true;
+   			if(isset($feedarray['message'])){
+   				$this->say($feedarray['message']);
+   			}
+   			else{
+   				$this->say("Intentalo nuevamente :( Me enrede");
+   			}
     }
 }

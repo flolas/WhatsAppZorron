@@ -30,20 +30,20 @@ class Quit extends \Library\WhatsApp\Module\Base {
      * $this->source = phone
      * $this->message = complete message recieved whitout command
      * $this->type = type of msg(voice,msg,attach,etc..)
-     * $this->name = name of the sender
+     * $this->from = name of the sender
      * $this->say($msg) for response(autologged on console)
      * $this->log($msg,$kind) for log [$kind]$msg on console
      * $this->arguments = list of arguments after command(spaces)
      */
     public function command() {
     	if($this->arguments[0]==MPASS){
- 		$this->bot->log("Shutting down bot from {$this->name}<{$this->source}>");
+ 		$this->bot->log("Shutting down bot from {$this->from}<{$this->source}>");
    		$this->say("Saliendo...");
    		exit();
     	}
     	else
     	{
-    		$this->bot->log("Unauthorized access from {$this->name}<{$this->source}>");
+    		$this->bot->log("Unauthorized access from {$this->from}<{$this->source}>");
     		$this->say("No puedes hacer esto pequeno zorron.");
     	}
    		

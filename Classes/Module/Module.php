@@ -16,7 +16,7 @@ class Module extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = '!Restart <action> <module name> <password>';
+	protected $help = '!Restart <module name> <action> <password>';
 
 	/**
 	 * The number of arguments the command needs.
@@ -37,8 +37,55 @@ class Module extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
     $args = $this->arguments;
+    $args[0]=ucfirst($args[0]);
     	if($args[2]==MPASS){
- 		$this->say('sadsa');
+    		$config = include(ROOT_DIR . '/config.php');
+    			foreach($config['modules'] as $_moduleName => $_args){
+    				if($_moduleName=="Module\\".$args[0]){
+    					$moduleName=$_moduleName;
+    					$arg= $_args;
+    					break;
+    				}
+    			}
+    		if (!isset($moduleName)){
+    			$this->say("Error de comando");
+    			return;
+    		}
+ 			switch($args[1]) {
+ 				case 'load':
+ 						foreach($this->bot->modules as $module=>$argss) {
+							if($moduleName == "Module\\".$module){
+								$this->say('El modulo ya esta cargado, cueck.');
+								return;
+							}
+ 						}
+ 					$this->say("Cargando modulo ".$args[0]);
+ 						if(!class_exists($moduleName)){
+								require(__DIR__."/".substr($moduleName,7).".php");
+						}
+ 					$reflector = new \ReflectionClass($moduleName);
+					$module = $reflector->newInstanceArgs($arg);
+					$this->bot->addModule($module);
+ 				break;
+ 			
+ 				case 'unload':
+ 					foreach($this->bot->modules as $modules=>$argsss){
+ 						if($moduleName == "Module\\".$modules){
+ 							$this->say("Desactivando modulo ".$args[0]);
+ 							$reflector = new \ReflectionClass($moduleName);
+							$module = $reflector->newInstanceArgs($arg);
+ 							$this->bot->deleteModule($module);
+ 							$_unloaded=TRUE;
+ 						}
+ 					}
+ 				if(!isset($_unloaded)){
+ 						$this->say('El modulo no esta cargado, cueck');
+ 						}
+ 				break;
+ 				
+ 				default:
+ 				$this->say("Error de comando.");
+ 			}
  		}
     	else
     	{

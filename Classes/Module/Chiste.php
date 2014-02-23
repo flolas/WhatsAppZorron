@@ -41,6 +41,7 @@ class Chiste extends \Library\WhatsApp\Module\Base {
         if ($joke) {
             if (isset($joke->value->joke)) {
                 $this->say(html_entity_decode($joke->value->joke));
+        $this->say("Estoy triste, no estoy para chistes :(");
                 return;
             }
         }

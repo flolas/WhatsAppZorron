@@ -253,6 +253,7 @@ class Bot {
 	public function deleteModule( \Library\WhatsApp\Module\Base $module ) {
 		$moduleName = $this->getClassName($module);
 		$this->modules[$moduleName] = null;
+		$this->modules = array_filter($this->modules);
 		$this->log( 'El siguiente Modulo se desactivo al Bot: "' . $moduleName . '".', 'INFO' );
 	}
 	/**
