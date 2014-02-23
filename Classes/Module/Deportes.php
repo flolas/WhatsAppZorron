@@ -60,7 +60,8 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			if(isset($r->key)){
 				$this->say("Tu key es:");
 				$this->say($r->key);
-				$this->say("Guardala bien, pues se ocupa para reservar/cancelar deportes.\n Si se te pierdes la puedes conseguir denuevo utilizando el mismo comando");
+				sleep(1);
+				$this->say("Guardala bien, pues se ocupa para reservar/cancelar deportes.\n Si se te pierde la puedes conseguir denuevo utilizando el mismo comando");
 				$this->say("Escribe !deportes ver <tu key> para ver los deportes disponibles :).");
 			}
 			else {
@@ -84,13 +85,13 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
-			if(isset($r)){
+			if($r){
 			foreach($r as $deporte){
 				$this->say($deporte->name);
 			}
 			}
-			elseif(isset($r->name) && $r->name=="no data"){
-				$this->say("No hay deportes disponibles para reserver");
+			elseif($r->name){
+				$this->say("No hay deportes disponibles para reservar");
 			}
 			else{
 				$this->say("Error :(");
