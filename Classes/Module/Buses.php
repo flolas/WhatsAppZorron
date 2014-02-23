@@ -17,7 +17,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 	 * @var string
 	 */
 	protected $help = '!buses <hacia/desde> <Lugar>\n
-					   !buses <hacia/desde> proximos\n
+					   !buses <hacia/desde> <Lugar> proximos\n
 					   Para Vina: !buses <Lugar> <hacia/desde> vina\n
 							      !buses proximos <hacia/desde> vina\n';
 
@@ -41,14 +41,14 @@ class Buses extends \Library\WhatsApp\Module\Base {
     public function command() {
 		$args = $this->arguments;
 		$l='santiago';
-			if(stristr((string)$args[2],'vina') !== FALSE && $args[2]) {
+			if(stristr((string)$args[2],'vina') !== FALSE && $args[3]) {
 				 $l='vina';
-				 $args[2] = str_replace("vina", "", $args[2]);
+				 $args[2] = str_replace("vina", "", $args[3]);
 			}
-				if( stristr('proximo',$args[1]) !== FALSE && $args[1]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/upcoming/1000");
+				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".args[1]."upcoming/1000");
 						$data=json_decode($getJson);
-						$this->say("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/upcoming/1000");
+						$this->say("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".args[1]."upcoming/1000");
 						$h="";
 						foreach($data as $prox){
 						$h="Un bus a las {$prox->static_time}. Tiempo de llegada:Ê{$prox->diff_time_min}";
@@ -57,6 +57,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				}
 				elseif ($args[0]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);
+						$this->say("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $hora){
