@@ -60,7 +60,8 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			if(isset($r->key)){
 				$this->say("Tu key es:")
 				$this->say($r->key);
-				$this->say("Escribe !reservar ver <tu key> para ver los deportes disponibles :)");
+				$this->say("Guardala bien, pues se ocupa para reservar/cancelar deportes.\n Si se te pierdes la puedes conseguir denuevo utilizando el mismo comando");
+				$this->say("Escribe !deportes ver <tu key> para ver los deportes disponibles :).");
 			}
 			else {
 				$this->say("Te equivocaste en tu usuario o clave :(");
