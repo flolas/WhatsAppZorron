@@ -46,7 +46,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				 $args[2] = str_replace("vina", "", $args[3]);
 			}
 				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".args[1]."upcoming/1000");
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]."upcoming/1000");
 						$data=json_decode($getJson);
 						$this->say("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".args[1]."upcoming/1000");
 						$h="";
