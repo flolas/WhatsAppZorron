@@ -82,6 +82,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('reservar',$args[0]) !== FALSE) {
+			$this->say("Reservando deporte...");
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
 			if($r->message ){
 				$this->say("No se ha reservado, disculpa :(");
@@ -90,6 +91,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		}
 		
 		elseif(stristr('cancelar',$args[0]) !== FALSE) {
+			$this->say("Cancelando deporte...");
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/cancel/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
 			if($r->message ){
 				$this->say("No se ha reservado, disculpa :(");
@@ -97,6 +99,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('renovar',$args[0]) !== FALSE) {
+			$this->say("Renovando deporte...");
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/renovate/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
 				if($r->message ){
 					$this->say("No se ha reservado, disculpa :(");
@@ -105,7 +108,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
-			if(!$r->name){
+			if(!(array)$r['name']){
 			foreach($r as $deporte){
 				$this->say($deporte->module."\n".
 						   $deporte->id."\n".
@@ -114,7 +117,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 						   $deporte->quota."\n");
 			}
 			}
-			elseif($r->name){
+			elseif((array)$r['name']){
 				$this->say("No hay deportes disponibles para reservar");
 			}
 			else{
