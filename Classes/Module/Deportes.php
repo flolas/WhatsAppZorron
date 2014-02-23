@@ -108,7 +108,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
-			if(!(array)$r['name']){
+			if(!$r->name){
 			foreach($r as $deporte){
 				$this->say($deporte->module."\n".
 						   $deporte->id."\n".
@@ -117,7 +117,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 						   $deporte->quota."\n");
 			}
 			}
-			elseif((array)$r['name']){
+			elseif($r->name){
 				$this->say("No hay deportes disponibles para reservar");
 			}
 			else{
