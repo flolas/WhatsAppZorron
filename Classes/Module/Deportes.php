@@ -42,7 +42,18 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	{
 		$args = $this->arguments;
 		if( stristr('asistencias',$args[0]) !== FALSE){
-			$r = 'Debes llevar 0 asistencias. Perrito, estamos de vacaciones! :)';
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/assists/key/'.urlencode($args[1])));
+			$target_assists=0;
+			$this->say("Debes llevar ".$target_assists." asistencias");
+				if(isset($r->count_assists)){
+					$this->say("Llevas".$r->count_assists);
+						if($target_assists == $r->count_assists){
+							$this->say("Felicitaciones! vas bien con tus asistencias :)");
+						}
+				}
+				else{
+					$this->say("Error :(");
+				}
 			return;
 		}
 		elseif(stristr('key',$args[0]) !== FALSE) {
@@ -71,16 +82,25 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('reservar',$args[0]) !== FALSE) {
-			$r = $this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
+			if($r->message ){
+				$this->say("No se ha reservado, disculpa :(");
+			}
 			return;
 		}
 		
 		elseif(stristr('cancelar',$args[0]) !== FALSE) {
-			$r = $this->fetch('http://api.salasuai.com/sports/cancel/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/cancel/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
+			if($r->message ){
+				$this->say("No se ha reservado, disculpa :(");
+			}
 			return;
 		}
 		elseif(stristr('renovar',$args[0]) !== FALSE) {
-			$r = $this->fetch('http://api.salasuai.com/sports/renovate/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/renovate/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
+				if($r->message ){
+					$this->say("No se ha reservado, disculpa :(");
+				}
 			return;
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
@@ -106,6 +126,11 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/status/key/'.urlencode($args[1])));
 			if($r->message ){
 				$this->say("No tienes una reserva activa");
+			}
+			elseif($r->name){
+			$this->say($r->name."\n".
+					   $r->start_time."\n".
+					   $->grace_time."\n");
 			}
 			return;
 		}
