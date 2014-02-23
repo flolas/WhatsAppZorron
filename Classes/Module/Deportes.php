@@ -130,7 +130,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			elseif($r->name){
 			$this->say($r->name."\n".
 					   $r->start_time."\n".
-					   $->grace_time."\n");
+					   $r->grace_time."\n");
 			}
 			return;
 		}
