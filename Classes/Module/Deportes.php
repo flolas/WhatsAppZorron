@@ -43,7 +43,6 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		$args = $this->arguments;
 		if( stristr('asistencias',$args[0]) !== FALSE){
 			$r = 'Debes llevar 0 asistencias. Perrito, estamos de vacaciones! :)';
-			return;
 		}
 		elseif(stristr('key',$args[0]) !== FALSE) {
 			$data = "usr=".$args[1]."&pwd=".$args[2];
@@ -56,32 +55,25 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			'Content-Length: ' . strlen($data))
 			);
 			$r = curl_exec($ch);
-			return;
 		}
 		elseif(stristr('reservar',$args[0]) !== FALSE) {
 			$r = $this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
-			return;
 		}
 		
 		elseif(stristr('cancelar',$args[0]) !== FALSE) {
 			$r = $this->fetch('http://api.salasuai.com/sports/cancel/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
-			return;
 		}
 		elseif(stristr('renovar',$args[0]) !== FALSE) {
 			$r = $this->fetch('http://api.salasuai.com/sports/renovate/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
-			return;
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = $this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1]));
-			return;
 		}
 		elseif(stristr('estado',$args[0]) !== FALSE) {
 			$r = $this->fetch('http://api.salasuai.com/sports/status/key/'.urlencode($args[1]));
-			return;
 		}
 		else{
 			$r = $this->help;
-			return;
 		}
 		echo print_r(json_decode($r));
 		$this->say(json_decode($r));
