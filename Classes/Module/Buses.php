@@ -41,11 +41,11 @@ class Buses extends \Library\WhatsApp\Module\Base {
     public function command() {
 		$args = $this->arguments;
 		$l='santiago';
-			if(stristr((string)$args[2],'vina') !== FALSE) {
+			if(stristr((string)$args[2],'vina') !== FALSE && $args[2]) {
 				 $l='vina';
 				 $args[2] = str_replace("vina", "", $args[2]);
 			}
-				if( stristr('proximo',$args[1]) !== FALSE){
+				if( stristr('proximo',$args[1]) !== FALSE && $args[1]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/upcoming/1000");
 						$data=json_decode($getJson);
 						$h="";
@@ -54,7 +54,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						}
 						$this->say("Buses\n".$h);
 				}
-				else{
+				elseif ($args[0]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);
 						$data=json_decode($getJson);
 						$h="";
@@ -62,6 +62,9 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$h="\n".$hora.$h;
 						}
 						$this->say("Buses\n".$h);
+				}
+				else{
+					$this->say("Error");
 				}
 		
     }
