@@ -50,7 +50,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $prox) {
-						$time= strval($prox->diff_time_min);
+						$time= substr(strval($prox->diff_time_min),1);
 						$h="Un bus a las {$prox->static_time} Tiempo de llegada:Ê{$time} \n {$h}";
 						}
 						$this->say("Buses\n".$h);
