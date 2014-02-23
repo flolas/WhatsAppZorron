@@ -56,7 +56,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			'Content-Length: ' . strlen($data))
 			);
 			$r = json_decode(curl_exec($ch));
-			if(isset($r->key){
+			if(isset($r->key)){
 				$this->say("Tu key es ".$r->key.". Escribe !reservar ver ".$r->key."para ver los deportes disponibles :)");
 			}
 			else {
