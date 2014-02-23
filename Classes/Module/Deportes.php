@@ -82,7 +82,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('reservar',$args[0]) !== FALSE) {
-			$r = json_decode($this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/reserve/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
 			if($r->message ){
 				$this->say("No se ha reservado, disculpa :(");
 			}
