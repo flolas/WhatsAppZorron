@@ -48,6 +48,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				if( stristr('proximo',$args[1]) !== FALSE && $args[1]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/upcoming/1000");
 						$data=json_decode($getJson);
+						$this-say("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/upcoming/1000");
 						$h="";
 						foreach($data as $prox){
 						$h="Un bus a las {$prox->static_time}. Tiempo de llegada:Ê{$prox->diff_time_min}";
