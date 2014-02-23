@@ -37,7 +37,6 @@ class Restart extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
     	if($this->arguments[0]==MPASS){
-    	spl_autoload_register( 'Autoloader::load' );
     	$config = include(ROOT_DIR . '/config.php');
  		$this->bot->log("Restarting bot from {$this->name}<{$this->source}>");
    		$this->say("Reiniciando...");
@@ -46,6 +45,8 @@ class Restart extends \Library\WhatsApp\Module\Base {
 			$this->bot->deleteModule($module);
 		}
 		foreach ($config['modules'] as $moduleName => $args) {
+			$this->say(__DIR__.$moduleName);
+			include(__DIR__.$moduleName);
 			$reflector = new \ReflectionClass($moduleName);
 			$module = $reflector->newInstanceArgs($args);
 			$this->bot->addModule($module);
