@@ -49,9 +49,9 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]."/upcoming/1000");
 						$data=json_decode($getJson);
 						$h="";
-						foreach($data as $prox){
-						$prox->diff_time_min =(string)$prox->diff_time_min;
-						$h="Un bus a las {$prox->static_time}. Tiempo de llegada:Ê{$prox->diff_time_min}\n";
+						foreach($data as $prox)
+						$time=strval($prox->diff_time_min);
+						$h="Un bus a las {$prox->static_time}. Tiempo de llegada:Ê{$time}\n".$h;
 						}
 						$this->say("Buses\n".$h);
 				}
