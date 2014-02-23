@@ -102,7 +102,6 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			if($r->message ){
 				$this->say("No tienes una reserva activa");
 			}
-			}
 			return;
 		}
 		else{
