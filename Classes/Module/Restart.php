@@ -45,7 +45,7 @@ class Restart extends \Library\WhatsApp\Module\Base {
 			$this->bot->deleteModule($module);
 		}
 		foreach ($config['modules'] as $moduleName => $args) {
-			$moduleName = substr($moduleName,6);
+			$moduleName = substr($moduleName,7);
 			include(__DIR__.$moduleName[1].".php");
 			$reflector = new \ReflectionClass($moduleName);
 			$module = $reflector->newInstanceArgs($args);
