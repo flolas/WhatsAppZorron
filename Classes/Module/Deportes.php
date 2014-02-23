@@ -62,7 +62,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			else {
 				$this->say("Te equivocaste en tu usuario o clave :(");
 			}
-			}
+			
 			return;
 		}
 		elseif(stristr('reservar',$args[0]) !== FALSE) {
