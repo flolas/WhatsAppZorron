@@ -85,9 +85,13 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
-			if($r){
+			if(!$r->name){
 			foreach($r as $deporte){
-				$this->say($deporte->name);
+				$this->say($deporte->module."\n".
+						   $deporte->id."\n".
+						   $deporte->name."\n".
+						   $deporte->teacher."\n".
+						   $deporte->quota."\n");
 			}
 			}
 			elseif($r->name){
