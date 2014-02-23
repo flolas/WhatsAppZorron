@@ -46,7 +46,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			$target_assists=0;
 			$this->say("Debes llevar ".$target_assists." asistencias");
 				if(isset($r->count_assists)){
-					$this->say("Llevas".$r->count_assists);
+					$this->say("Llevas ".$r->count_assists." asistencia a la fecha.");
 						if($target_assists == $r->count_assists){
 							$this->say("Felicitaciones! vas bien con tus asistencias :)");
 						}
