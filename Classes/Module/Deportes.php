@@ -46,6 +46,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('key',$args[0]) !== FALSE) {
+			$this->say("Obteniendo tu key...");
 			$data = "usr=".$args[1]."&pwd=".$args[2];
 			$ch = curl_init('http://api.salasuai.com/sports');
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -57,7 +58,9 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			);
 			$r = json_decode(curl_exec($ch));
 			if(isset($r->key)){
-				$this->say("Tu key es ".$r->key.". Escribe !reservar ver ".$r->key."para ver los deportes disponibles :)");
+				$this->say("Tu key es:")
+				$this->say($r->key);
+				$this->say("Escribe !reservar ver <tu key> para ver los deportes disponibles :)");
 			}
 			else {
 				$this->say("Te equivocaste en tu usuario o clave :(");
@@ -79,11 +82,26 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			return;
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
-			$r = $this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
+			if(isset($r)){
+			foreach($r as $deporte){
+				$this->say($deporte->name);
+			}
+			}
+			elseif(isset($r->name) && $r->name=="no data"){
+				$this->say("No hay deportes disponibles para reserver");
+			}
+			else{
+				$this->say("Error :(");
+			}
 			return;
 		}
 		elseif(stristr('estado',$args[0]) !== FALSE) {
-			$r = $this->fetch('http://api.salasuai.com/sports/status/key/'.urlencode($args[1]));
+			$r = json_decode($this->fetch('http://api.salasuai.com/sports/status/key/'.urlencode($args[1])));
+			if($r->message ){
+				$this->say("No tienes una reserva activa");
+			}
+			}
 			return;
 		}
 		else{
