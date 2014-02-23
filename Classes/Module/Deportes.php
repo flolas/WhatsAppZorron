@@ -83,6 +83,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			$r = $this->help;
 			return;
 		}
-		$this->say($r);
+		echo print_r(json_decode($r));
+		$this->say(json_decode($r));
 		}
 	}
