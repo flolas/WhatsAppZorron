@@ -31,6 +31,7 @@ class Ayuda extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
     	$this->say("Conmigo puedes ver en que sala te toca un ramo, reservar deportes, ver asistencias, etc..");
-        $this->say("Puedes decirme:\n". strtolower(implode( "\n",array_keys($this->bot->modules ))));        
+        sleep(1);
+    	$this->say("Puedes decirme:\n". strtolower(implode( "\n",array_keys($this->bot->modules ))));        
     }
 }

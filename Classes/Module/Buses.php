@@ -40,9 +40,9 @@ class Buses extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
 		$args = $this->arguments;
-		if(count($this->arguments)<1){
-		$this->say($help);
-		return false;
+    	if(count($this->arguments) == 0){
+		$this->say("Con este comando puedes ver las horas de los buses.\nUsa:".$this->help);
+		return;
 		}
 		$l='santiago';
 			if(stristr((string)$args[2],'vina') !== FALSE && $args[3]) {

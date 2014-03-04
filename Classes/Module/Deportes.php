@@ -41,9 +41,9 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	public function command()
 	{
 		$args = $this->arguments;
-		if(count($this->arguments)<1){
-			$this->say($help);
-			return false;
+		if(count($this->arguments) == 0){
+		$this->say("Con este comando puedes reservar deportes.\nUsa:".$this->help);
+		return;
 		}
 		if( stristr('asistencias',$args[0]) !== FALSE){
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/assists/key/'.urlencode($args[1])));
