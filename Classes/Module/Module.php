@@ -16,7 +16,7 @@ class Module extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = '!Restart <module name> <action> <password>';
+	protected $help = 'module <module name> <action> <password>';
 
 	/**
 	 * The number of arguments the command needs.
