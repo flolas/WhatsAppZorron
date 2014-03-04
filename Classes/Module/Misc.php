@@ -33,7 +33,7 @@ class Misc extends \Library\WhatsApp\Module\Base {
 				    	foreach ($patterns as $pattern) {
 				    		if (stristr($message, $pattern)) {
 				    			$this->say($m['responses'][array_rand($m['responses'])]);
-				    			if($key=='saludar'){$this->say("Escribe !ayuda para ver que puedo hacer por ti :)");}
+				    			if($key=='saludar'){sleep(0.05);$this->say("Escribe ayuda para ver que puedo hacer por ti :)");}
 				    			break;
 				    		}
 				    	}
