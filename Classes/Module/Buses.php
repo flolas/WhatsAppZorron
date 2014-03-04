@@ -16,10 +16,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = 'buses <hacia/desde> <Lugar>\n
-					   buses <hacia/desde> <Lugar> proximos\n
-					   Para Vina: !buses <Lugar> <to/from> vina\n
-							      !buses proximos <hacia/desde> vina\n';
+	protected $help = "buses <hacia/desde> <Lugar>\nbuses <hacia/desde> <Lugar> proximos\nPara Vina: !buses <Lugar> <to/from> vina\nbuses proximos <hacia/desde> vina\n";
 
 	/**
 	 * The number of arguments the command needs.

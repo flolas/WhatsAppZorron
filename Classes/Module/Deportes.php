@@ -16,14 +16,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "Primero debes utilizar este comando: !deportes key <usr> <pwd>\n
-					   \nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)
-					   deportes asistencias <key>\n
-					   deportes ver <key>\n
-					   deportes reservar <#deporte> <key>\n
-					   deportes cancelar <#deporte> <key>\n
-					   deportes renovar <#deporte> <key>\n
-					   deportes estado <key>\n";
+	protected $help = "Primero debes utilizar este comando: !deportes key <usr> <pwd>\n\nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)deportes asistencias <key>\ndeportes ver <key>\ndeportes reservar <#deporte> <key>\ndeportes cancelar <#deporte> <key>\ndeportes renovar <#deporte> <key>\ndeportes estado <key>\n";
 
 
 	/**
