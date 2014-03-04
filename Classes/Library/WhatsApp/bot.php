@@ -49,7 +49,7 @@ class Bot {
 	 */
 	private $logFile = '';
 
-	public $commandPrefix = '!';
+	public $commandPrefix = '';
 	/**
 	 * All available commands.
 	 * Commands are type of WhatsAppCommand
