@@ -15,7 +15,7 @@ class Ayuda extends \Library\WhatsApp\Module\Base {
      *
      * @var string
      */
-    protected $help = '!ayuda';
+    protected $help = 'ayuda';
 
     /**
      * The number of arguments the command needs.
@@ -31,6 +31,6 @@ class Ayuda extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
     	$this->say("Conmigo puedes ver en que sala te toca un ramo, reservar deportes, ver asistencias, etc..");
-        $this->say("Puedes decirme:\n!". strtolower(implode( "\n!",array_keys($this->bot->modules ))));        
+        $this->say("Puedes decirme:\n!". strtolower(implode( "\n",array_keys($this->bot->modules ))));        
     }
 }

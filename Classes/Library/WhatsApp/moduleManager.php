@@ -68,7 +68,7 @@ class moduleManager
 			
 			
 			if (!array_key_exists( $command, $this->bot->modules )) {
-					$this->connection->say($data['phone'],"El comando no existe :(.\nEscribe !ayuda para mas informacion.");
+					$this->connection->say($data['phone'],"El comando no existe :(.\nEscribe {$this->bot->commandPrefix} ayuda para mas informacion.");
 					$this->bot->log( 'The following, not existing, command was called: "' . $command . '".', 'MISSING' );
 					$this->bot->log( 'The following commands are known by the bot: "' . implode( ',', array_keys( $this->bot->modules ) ) . '".', 'MISSING' );
 				return false;
