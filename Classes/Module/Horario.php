@@ -16,7 +16,7 @@ class Horario extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "\nSantiago: !horario <ramo a buscar>\n Vina: !horario <ramo a buscar> vina";
+	protected $help = "\nSantiago: horario <ramo a buscar>\n Vina: horario <ramo a buscar> vina";
 
 
 	/**

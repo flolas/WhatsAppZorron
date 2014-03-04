@@ -18,12 +18,12 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	 */
 	protected $help = "Primero debes utilizar este comando: !deportes key <usr> <pwd>\n
 					   \nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)
-					   !deportes asistencias <key>\n
-					   !deportes ver <key>\n
-					   !deportes reservar <#deporte> <key>\n
-					   !deportes cancelar <#deporte> <key>\n
-					   !deportes renovar <#deporte> <key>\n
-					   !deportes estado <key>\n";
+					   deportes asistencias <key>\n
+					   deportes ver <key>\n
+					   deportes reservar <#deporte> <key>\n
+					   deportes cancelar <#deporte> <key>\n
+					   deportes renovar <#deporte> <key>\n
+					   deportes estado <key>\n";
 
 
 	/**
@@ -41,6 +41,10 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	public function command()
 	{
 		$args = $this->arguments;
+		if(count($this->arguments)<1){
+			$this->say($help);
+			return false;
+		}
 		if( stristr('asistencias',$args[0]) !== FALSE){
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/assists/key/'.urlencode($args[1])));
 			$target_assists=0;

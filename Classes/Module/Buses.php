@@ -16,8 +16,8 @@ class Buses extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = '!buses <hacia/desde> <Lugar>\n
-					   !buses <hacia/desde> <Lugar> proximos\n
+	protected $help = 'buses <hacia/desde> <Lugar>\n
+					   buses <hacia/desde> <Lugar> proximos\n
 					   Para Vina: !buses <Lugar> <to/from> vina\n
 							      !buses proximos <hacia/desde> vina\n';
 
@@ -40,6 +40,10 @@ class Buses extends \Library\WhatsApp\Module\Base {
      */
     public function command() {
 		$args = $this->arguments;
+		if(count($this->arguments)<1){
+		$this->say($help);
+		return false;
+		}
 		$l='santiago';
 			if(stristr((string)$args[2],'vina') !== FALSE && $args[3]) {
 				 $l='vina';
