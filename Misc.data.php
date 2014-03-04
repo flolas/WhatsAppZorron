@@ -12,6 +12,17 @@
  * @author Felipe Lolas <flolas@alumnos.uai.cl>
  */
 return array(
+	'who' =>Array('msgs'=>array(
+			                'como te llamas',
+							'quien eres'
+					 ),
+					  'responses'=>array(
+					  		'Soy el Zorron UAI perrito!',
+					  		'Zorron UAI perrrrritow!'
+					  		
+					 )
+					 )
+		,
 	'saludar' =>Array('msgs'=>array(
 							'hola',
 							'wena',
@@ -42,14 +53,41 @@ return array(
 							'como estay',
 							'como tamos',
 							'que talca',
-							'como tay'
+							'como tay',
+							'como estas',
+							'que onda'
 					 ),
 					  'responses'=>array(
 					  		"Bien y tu? :D",
 					  		"Mal y tu?",
-					  		"Con ca–a perrito y usted?",
+					  		"Con ca–a perrito y usted maquina?",
 					  		"Bien gracias :)",
 					  		"Bien bien bien bien :)",
+					 )
+					 )
+		,
+	 'estados_de_animo_bad'=>Array('msgs'=>array(
+							'horrible',
+							'mal',
+							'pesimo',
+							'ca–a'
+					 ),
+					  'responses'=>array(
+					  		"Animo!",
+					  		"Vamos por unas piscolits, papicard paga perrito",
+					  		"que mejor que unas chelitas heladitas! yo invito",
+					 )
+					 )
+		,
+	 'estados_de_animo_good'=>Array('msgs'=>array(
+							'bien',
+							'la raja',
+							'estupendo',
+							'cachilupi'
+					 ),
+					  'responses'=>array(
+					  		"Que bueno!",
+					  		"Ese es el espiritu zorron UAI!",
 					 )
 					 )
 		,

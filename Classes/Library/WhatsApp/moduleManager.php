@@ -52,14 +52,25 @@ class moduleManager
 		$this->bot->log($output,"Message");
 		// Check if the response was a command.
 		
+		if(!isset($this->bot->commandPrefix)){
+			$dataexp=explode(" ",$data['message']);
+			$command = ucfirst($dataexp[0]);
+			if (!array_key_exists( $command, $this->bot->modules )) {
+					$this->bot->executeCommand($data['phone'],'Misc',Array("type"=>$data['type'],"name"=>$data['name'],"message"=>$data['message']));
+					return false;
+			}
+			$this->bot->executeCommand($data['phone'],$command, Array("type"=>$data['type'],"name"=>$data['name'],"message"=>$data['message']));
+		}
+		else{
 		if (stripos( $data['message'], $this->bot->commandPrefix ) === 0) {
 			$dataexp=explode(" ",$data['message']);
 			$command = ucfirst(substr($dataexp[0],1));
 			
+			
 			if (!array_key_exists( $command, $this->bot->modules )) {
-				$this->connection->say($data['phone'],"El comando no existe :(.\nEscribe !ayuda para mas informacion.");
-				$this->bot->log( 'The following, not existing, command was called: "' . $command . '".', 'MISSING' );
-				$this->bot->log( 'The following commands are known by the bot: "' . implode( ',', array_keys( $this->bot->modules ) ) . '".', 'MISSING' );
+					$this->connection->say($data['phone'],"El comando no existe :(.\nEscribe !ayuda para mas informacion.");
+					$this->bot->log( 'The following, not existing, command was called: "' . $command . '".', 'MISSING' );
+					$this->bot->log( 'The following commands are known by the bot: "' . implode( ',', array_keys( $this->bot->modules ) ) . '".', 'MISSING' );
 				return false;
 			}
 			$this->bot->executeCommand($data['phone'],$command, Array("type"=>$data['type'],"name"=>$data['name'],"message"=>$data['message']));
@@ -69,6 +80,8 @@ class moduleManager
 		{
 		$this->bot->executeCommand($data['phone'],'Misc',Array("type"=>$data['type'],"name"=>$data['name'],"message"=>$data['message']));
 		}		
+		}
+		
 	return true;
 	}
 
