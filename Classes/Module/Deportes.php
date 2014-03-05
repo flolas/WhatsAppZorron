@@ -85,8 +85,8 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 				$this->say("No se ha reservado, disculpa :(");
 			}
 			elseif($r->name){
-				$this->say("Deporte: ".$r->name."\n".
-						"Inicio: "$r->start_time."\n".
+				$this->say("Deporte:".$r->name."\n".
+						"Inicio:".$r->start_time."\n".
 						$r->grace_time."\n");
 			}
 			return;
