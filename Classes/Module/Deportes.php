@@ -123,7 +123,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 				$this->say("Id:".$deporte->id."\n".
 						   "Deporte:".$deporte->name."\n".
 						   "Prof:".$deporte->teacher."\n".
-						   "Hora:"$deporte->module."\n".
+						   "Hora:".$deporte->module."\n".
 						   "Cupo:".$deporte->quota."\n");
 			}
 			}
