@@ -16,7 +16,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "Primero debes utilizar este comando: !deportes key <usr> <pwd>\n\nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)deportes asistencias <key>\ndeportes ver <key>\ndeportes reservar <#deporte> <key>\ndeportes cancelar <#deporte> <key>\ndeportes renovar <#deporte> <key>\ndeportes estado <key>\n";
+	protected $help = "Primero debes decirme: deportes key <usr> <pwd>\n\nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)\ndeportes asistencias <key>\ndeportes ver <key>\ndeportes reservar <#deporte> <key>\ndeportes cancelar <#deporte> <key>\ndeportes renovar <#deporte> <key>\ndeportes estado <key>\n";
 
 
 	/**
@@ -84,6 +84,11 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			if($r->message ){
 				$this->say("No se ha reservado, disculpa :(");
 			}
+			elseif($r->name){
+				$this->say("Deporte: ".$r->name."\n".
+						"Inicio: "$r->start_time."\n".
+						$r->grace_time."\n");
+			}
 			return;
 		}
 		
@@ -91,7 +96,10 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			$this->say("Cancelando deporte...");
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/cancel/sport/'.urlencode($args[1]).'/key/'.urlencode($args[2])));
 			if($r->message ){
-				$this->say("No se ha reservado, disculpa :(");
+				$this->say("Se cancelo la reserva");
+			}
+			elseif($r->name){
+				$this->say("No se pudo cancelo la reserva :(");
 			}
 			return;
 		}
@@ -101,17 +109,22 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 				if($r->message ){
 					$this->say("No se ha reservado, disculpa :(");
 				}
+				elseif($r->name){
+					$this->say("Deporte: ".$r->name."\n".
+							"Inicio: "$r->start_time."\n".
+							$r->grace_time."\n");
+				}
 			return;
 		}
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
 			if(!$r->name){
 			foreach($r as $deporte){
-				$this->say($deporte->module."\n".
-						   $deporte->id."\n".
-						   $deporte->name."\n".
-						   $deporte->teacher."\n".
-						   $deporte->quota."\n");
+				$this->say("Id:".$deporte->id."\n".
+						   "Deporte:".$deporte->name."\n".
+						   "Prof:".$deporte->teacher."\n".
+						   "Hora:"$deporte->module."\n".
+						   "Cupo:".$deporte->quota."\n");
 			}
 			}
 			elseif($r->name){
@@ -128,8 +141,8 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 				$this->say("No tienes una reserva activa");
 			}
 			elseif($r->name){
-			$this->say($r->name."\n".
-					   $r->start_time."\n".
+			$this->say("Deporte: ".$r->name."\n".
+					   "Inicio: "$r->start_time."\n".
 					   $r->grace_time."\n");
 			}
 			return;
