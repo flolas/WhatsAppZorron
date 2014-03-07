@@ -124,8 +124,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 						"🔑Id:".$deporte->id."\n".
 						   "👤".$deporte->teacher."\n".
 						   "🕐".$deporte->module."\n".
-						   "👥".$deporte->quota."\n
-							________________________\n".
+						   "👥".$deporte->quota."\n________________________\n".
 							$data;
 			}
 			$this->say($data);
