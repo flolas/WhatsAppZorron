@@ -52,15 +52,15 @@ class Buses extends \Library\WhatsApp\Module\Base {
 			else{
 				$args[0]='from';
 			}
-				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
+				if( stristr('proximos',$args[2]) !== FALSE && $args[1]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]."/upcoming/1000");
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $prox) {
-						$h="Un bus a las {$prox->static_time} Tiempo de llegada: {$prox->diff_time_min} \n {$h}";
+						$h="Un bus de las {$prox->static_time}\nTiempo de llegada: {$prox->diff_time_min} min \n__________ {$h}";
 						}
 						if($h=="\n" || $h==""){
-							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximo");
+							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximos");
 							return true;
 						}
 						$this->say("Buses\n".$h);
