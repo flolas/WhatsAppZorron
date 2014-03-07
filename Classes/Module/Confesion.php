@@ -16,7 +16,7 @@ class Confesion extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = '!confesion <#confesion o tema>';
+	protected $help = 'confesion para una confesion al azar';
 
 	/**
 	 * The number of arguments the command needs.
