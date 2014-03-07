@@ -54,7 +54,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$h="Un bus a las {$prox->static_time} Tiempo de llegada: {$prox->diff_time_min} \n {$h}";
 						}
 						if($h=="\n" || $h=""){
-							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximo")
+							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximo");
 							return true;
 						}
 						$this->say("Buses\n".$h);
