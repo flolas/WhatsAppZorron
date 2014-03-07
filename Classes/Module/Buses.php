@@ -49,11 +49,11 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
 						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]=='hacia'?'to':'from'."/".$args[1]."/upcoming/1000");
 						$data=json_decode($getJson);
-						$h="\n";
+						$h="";
 						foreach($data as $prox) {
 						$h="Un bus a las {$prox->static_time} Tiempo de llegada: {$prox->diff_time_min} \n {$h}";
 						}
-						if($h=="\n" || $h=""){
+						if($h=="\n" || $h==""){
 							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximo");
 							return true;
 						}
@@ -65,7 +65,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						foreach($data as $hora){
 						$h="\n".$hora.$h;
 						}
-						if($h=="\n" || $h=""){
+						if($h=="\n" || $h==""){
 							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia");
 							return true;
 						}
