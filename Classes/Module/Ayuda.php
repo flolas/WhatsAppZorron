@@ -38,6 +38,7 @@ class Ayuda extends \Library\WhatsApp\Module\Base {
         unset($modules_users['Module']);
         unset($modules_users['Quit']);
         unset($modules_users['Ayuda']);
+        print_r($modules_users);
     	$this->say("Dime que necesitas! Esto puedes decirme:\n". strtolower(implode( "\n", $modules_users)));        
     }
 }
