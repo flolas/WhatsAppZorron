@@ -57,7 +57,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $prox) {
-						$h="Un bus de las {$prox->static_time}\nTiempo de llegada: {$prox->diff_time_min} min \n__________ {$h}";
+						$h="Bus de las {$prox->static_time}\nTiempo de llegada: {$prox->diff_time_min} min \n__________\n{$h}";
 						}
 						if($h=="\n" || $h==""){
 							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximos");
