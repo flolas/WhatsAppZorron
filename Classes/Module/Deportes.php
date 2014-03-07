@@ -120,13 +120,15 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
 			if(!$r->name){
 			foreach($r as $deporte){
-				$this->say("Id:".$deporte->id."\n".
-						   "Deporte:".$deporte->name."\n".
-						   "Prof:".$deporte->teacher."\n".
-						   "Hora:".$deporte->module."\n".
-						   "Cupo:".$deporte->quota."\n");
+				$data=	"👟".$deporte->name."\n".
+						"🔑Id:".$deporte->id."\n".
+						   "👤".$deporte->teacher."\n".
+						   "🕐".$deporte->module."\n".
+						   "👥".$deporte->quota."\n
+							________________________\n".
+							$data);
 			}
-			$this->say("Para reservar el deporte que deseas ahora escribe deportes reservar <Id Deporte> <key>");
+			$this->say("Para reservar el deporte que deseas ahora escribe deportes reservar <Id(del deporte a reservar)> <key>");
 			}
 			elseif($r->name){
 				$this->say("No hay deportes disponibles para reservar");

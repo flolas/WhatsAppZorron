@@ -16,7 +16,7 @@ class Horario extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "\nSantiago: horario <ramo a buscar>\n Vina: horario <ramo a buscar> vina";
+	protected $help = "\nhorario <ramo a buscar>\n Vina: horario <ramo a buscar> vina";
 
 
 	/**
@@ -35,6 +35,7 @@ class Horario extends \Library\WhatsApp\Module\Base {
 	{
 		if(count($this->arguments) == 0){
 		$this->say("Con este comando puedes buscar salas.\nUsa:".$this->help);
+		$this->say("Por ejemplo, si quieres buscar Electromagnetismo, escribe: horario electro, horario Electromagnetismo, etc...");
 		return;
 		}
 		$message = implode(' ', $this->arguments);
