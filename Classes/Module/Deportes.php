@@ -126,8 +126,9 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 						   "🕐".$deporte->module."\n".
 						   "👥".$deporte->quota."\n
 							________________________\n".
-							$data);
+							$data;
 			}
+			$this->say($data);
 			$this->say("Para reservar el deporte que deseas ahora escribe deportes reservar <Id(del deporte a reservar)> <key>");
 			}
 			elseif($r->name){
