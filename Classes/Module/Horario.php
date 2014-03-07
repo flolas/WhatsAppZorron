@@ -38,7 +38,7 @@ class Horario extends \Library\WhatsApp\Module\Base {
 		return;
 		}
 		$message = implode(' ', $this->arguments);
-		$this->say('Salas UAI: Buscando horarios ️');
+		$this->say('Salas UAI: Buscando horarios🔎');
 		$args = $this->arguments;
 		if(stristr((string)$message,'viña') !== FALSE || stristr((string)$message,'vina') !== FALSE) {
 		 $l='vina';
