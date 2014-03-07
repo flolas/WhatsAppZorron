@@ -62,13 +62,13 @@ class Horario extends \Library\WhatsApp\Module\Base {
 		$i++;
 		}
 		if($ramo->section!=""|| $ramo->section){
-			$section="📚Sec.".$ramo->section;
+			$section="\n📚Sec.".$ramo->section;
 		}
 		else{
 			$section=null;
 		}
 		$data="\t\t🕐".$ramo->module."🕐\t\n🎓".
-						mb_strtoupper($ramo->name,'UTF-8')."🎓\n".$section."\n👤".
+						mb_strtoupper($ramo->name,'UTF-8')."🎓".$section."\n👤".
 						ucwords($ramo->teacher)."\n🚪".
 						$ramo->classroom."\n".$separator."\n".
 						$data;
