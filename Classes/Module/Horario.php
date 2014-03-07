@@ -54,12 +54,13 @@ class Horario extends \Library\WhatsApp\Module\Base {
 		$data = "";
 		$separator = "";
 		foreach($ramos as $ramo){
+		$i=0;
 		while ($i++ < strlen($ramo->name)) {
 		$separator = '_'.$separator;
 		}
 		$data="\t\t️".$ramo->module."️️\t\n".
-						mb_strtoupper($ramo->name,'UTF-8')."\nSec:".$ramo->section."\n👤".
-						ucwords($ramo->teacher)."\n📍".
+						mb_strtoupper($ramo->name,'UTF-8')."\n📚Sec:".$ramo->section?$ramo->section:'-'."\n👤".
+						ucwords($ramo->teacher)."\n🚪".
 						$ramo->classroom."\n".$separator."\n".
 						$data;
 		}
@@ -73,7 +74,7 @@ class Horario extends \Library\WhatsApp\Module\Base {
 		else{
 			$this->say('SalasUAI: ⚠No encontre ningun ramo :(');
 			$this->say('SalasUAI: Revisa http://www.salasuai.com');
-			$this->say('Ejemplo de Uso: horario conta');
+			$this->say('Ejemplo de Uso: horario contabilidad, horario electro');
 			return;
 		}
 	}
