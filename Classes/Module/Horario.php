@@ -71,8 +71,9 @@ class Horario extends \Library\WhatsApp\Module\Base {
 		}
 		}
 		else{
-			$this->say('Salas UAI: ⚠No encontre ningun ramo :(');
+			$this->say('SalasUAI: ⚠No encontre ningun ramo :(');
 			$this->say('SalasUAI: Revisa http://www.salasuai.com');
+			$this->say('Ejemplo de Uso: horario conta');
 			return;
 		}
 	}
