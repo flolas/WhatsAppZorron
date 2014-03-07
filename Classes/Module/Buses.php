@@ -57,7 +57,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $prox) {
-						$h="🚍🕗".$prox->static_time."\n⌛Llega en ".$prox->diff_time_min." minutos \n ________________ \n.$h;
+						$h="🚍🕗" . $prox->static_time . "\n⌛Llega en " . $prox->diff_time_min . " minutos\n ________________\n". $h;
 						}
 						if($h=="\n" || $h==""){
 							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximos");
@@ -66,7 +66,8 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$this->say("Buses\n".$h);
     			}
 				elseif ($args[0]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);						$data=json_decode($getJson);
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);
+						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $hora){
 						$h="\n".$hora.$h;
