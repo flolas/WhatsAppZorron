@@ -3,7 +3,7 @@
 namespace Module;
 
 /**
- * Sends the joke to the user
+ * Modulo para chistes
  *
  * @package WhatsApp
  * @subpackage Module
@@ -15,7 +15,7 @@ class Chiste extends \Library\WhatsApp\Module\Base {
      *
      * @var string
      */
-    protected $help = '!chiste';
+    protected $help = 'Chiste para un chiste aleatorio, Chiste <tu chiste> para mandar uno :)';
 
     /**
      * The number of arguments the command needs.
@@ -24,11 +24,6 @@ class Chiste extends \Library\WhatsApp\Module\Base {
      */
     protected $numberOfArguments = 0;
 
-    /**
-     * Sends the arguments to the channel. A random joke.
-     *
-     * IRC-Syntax: PRIVMSG [#channel]or[user] : [message]
-     */
     public function command() {
 
         $data = $this->fetch("http://api.icndb.com/jokes/random");
@@ -37,7 +32,8 @@ class Chiste extends \Library\WhatsApp\Module\Base {
         $data = stripslashes($data);
 
         $joke = json_decode($data);
-
+		$this->say("Buscando un chiste fome en inglés...");
+		//$this->say("¡Manda tu chiste! Simplemente escribe Chiste <tu chiste aca> para hacerlo.")
         if ($joke) {
             if (isset($joke->value->joke)) {
                 $this->say(html_entity_decode($joke->value->joke));

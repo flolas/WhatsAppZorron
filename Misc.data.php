@@ -1,9 +1,9 @@
 <?php
 /**
  * Esto se recarga automaticamente, no es necesario reiniciar todo el sistema
- * Ojal‡ que esto no de problema de leak(lo m‡s probable es que si xD)
+ * OjalÃ¡ que esto no de problema de leak(lo mÃ¡s probable es que si xD)
  * Misc Data
- * Ac‡ puedes agregar entradas b‡sicas sin comandos.
+ * AcÃ¡ puedes agregar entradas bÃ¡sicas sin comandos.
  * para llamar variables se usa siempre el mensaje en "", nunca en ''
  * y la variable dentro de corchetes {$this->variable}. ie "Hola {$this->name}!" output: Hola Felipe!
  * por defecto se envia una respuesta aleatoria de responses
@@ -60,7 +60,7 @@ return array(
 					  'responses'=>array(
 					  		"Bien y tu? :D",
 					  		"Mal y tu?",
-					  		"Con ca–a perrito y usted maquina?",
+					  		"Con caÃ±a perrito y usted maquina?",
 					  		"Bien gracias :)",
 					  		"Bien bien bien bien :)",
 					 )
@@ -70,7 +70,7 @@ return array(
 							'horrible',
 							'mal',
 							'pesimo',
-							'ca–a'
+							'caÃ±a'
 					 ),
 					  'responses'=>array(
 					  		"Animo!",
@@ -100,5 +100,15 @@ return array(
 					 		":D"
 					 )
 					 )
-		
+		 ,
+	 'carrete'=>Array('msgs'=>array(
+					 		'murano',
+					 		'bella',
+					 ),
+					 'responses'=>array(
+					 				"Perrito, a la noche nos vemos alla",
+					 				"Previa en mi casa!"
+					 )
+					 )
+	
 );

@@ -3,7 +3,7 @@
 namespace Module;
 
 /**
- * Sends the joke to the user
+ * Modulo para obtener confesion desde confesion UAI Facebook
  *
  * @package WhatsApp
  * @subpackage Module

@@ -3,7 +3,7 @@
 namespace Module;
 
 /**
- * Sends the joke to the user
+ * Buses UAI desde la api de salas UAI
  *
  * @package WhatsApp
  * @subpackage Module
@@ -16,7 +16,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "buses <hacia/desde> <Lugar>\nbuses <hacia/desde> <Lugar> proximos\nPara Vina: !buses <Lugar> <to/from> vina\nbuses proximos <hacia/desde> vina\n";
+	protected $help = "\nbuses hacia/desde <Lugar>\nbuses hacia/desde <Lugar> proximos\nPara Vina: buses <Lugar> hacia/desde vina\nbuses proximos hacia/desde vina\n";
 
 	/**
 	 * The number of arguments the command needs.
@@ -47,24 +47,32 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				 $args[2] = str_replace("vina", "", $args[3]);
 			}
 				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]."/upcoming/1000");
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]=='hacia'?'to':'from'."/".$args[1]."/upcoming/1000");
 						$data=json_decode($getJson);
-						$h="";
+						$h="\n";
 						foreach($data as $prox) {
 						$h="Un bus a las {$prox->static_time} Tiempo de llegada: {$prox->diff_time_min} \n {$h}";
+						}
+						if($h=="\n" || $h=""){
+							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia proximo")
+							return true;
 						}
 						$this->say("Buses\n".$h);
     			}
 				elseif ($args[0]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);						$data=json_decode($getJson);
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]=='hacia'?'to':'from'."/".$args[1]);						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $hora){
 						$h="\n".$hora.$h;
 						}
+						if($h=="\n" || $h=""){
+							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia")
+							return true;
+						}
 						$this->say("Buses\n".$h);
 				}
 				else{
-					$this->say("Error");
+					$this->say("Error, intentalo nuevamente :(.");
 				}
 		
     }

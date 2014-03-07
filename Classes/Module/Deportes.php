@@ -3,11 +3,11 @@
 namespace Module;
 
 /**
- * Sends IMDB Info to channel.
+ * Modulo para reservar deportes UAI
  *
  * @package WhatsAppBot
  * @subpackage Module
- * @author NeXxGeN (https://github.com/NeXxGeN)
+ * 
  * @author flolas <flolas@alumnos.uai.cl>
  */
 class Deportes extends \Library\WhatsApp\Module\Base {
@@ -16,7 +16,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 	 *
 	 * @var string
 	 */
-	protected $help = "Primero debes decirme: deportes key <usr> <pwd>\n\nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)\ndeportes asistencias <key>\ndeportes ver <key>\ndeportes reservar <#deporte> <key>\ndeportes cancelar <#deporte> <key>\ndeportes renovar <#deporte> <key>\ndeportes estado <key>\n";
+	protected $help = "Primero debes decirme: deportes key <usuario sin @alumnos.uai.cl> <clave>\n\nEsto te dara una clave que debes guardar y utilizar para reservar deportes :)\ndeportes asistencias <key>\ndeportes ver <key>\ndeportes reservar <Id> <key>\ndeportes cancelar <Id> <key>\ndeportes renovar <Id> <key>\ndeportes estado <key>\n";
 
 
 	/**
@@ -119,6 +119,7 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 		elseif(stristr('ver',$args[0]) !== FALSE) {
 			$r = json_decode($this->fetch('http://api.salasuai.com/sports/get/key/'.urlencode($args[1])));
 			if(!$r->name){
+				$this->say("Para reservar el deporte que deseas ahora escribe deportes reservar <Id Deporte> <key>");
 			foreach($r as $deporte){
 				$this->say("Id:".$deporte->id."\n".
 						   "Deporte:".$deporte->name."\n".
@@ -130,8 +131,8 @@ class Deportes extends \Library\WhatsApp\Module\Base {
 			elseif($r->name){
 				$this->say("No hay deportes disponibles para reservar");
 			}
-			else{
-				$this->say("Error :(");
+			elseif($r->error){
+				$this->say("Error :( Intentalo nuevamente o utiliza http://www.salasuai.com/deportes.php");
 			}
 			return;
 		}

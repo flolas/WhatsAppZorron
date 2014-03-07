@@ -3,7 +3,7 @@
 namespace Module;
 
 /**
- * Sends IMDB Info to channel.
+ * Sends IMDB Info
  *
  * @package WhatsAppBot
  * @subpackage Module
