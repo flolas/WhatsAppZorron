@@ -46,8 +46,14 @@ class Buses extends \Library\WhatsApp\Module\Base {
 				 $l='vina';
 				 $args[2] = str_replace("vina", "", $args[3]);
 			}
+			if($args[0]=='hacia' && $args[0]){
+				$args[0]='to';
+			}
+			else{
+				$args[0]='from';
+			}
 				if( stristr('proximo',$args[2]) !== FALSE && $args[1]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]=='hacia'?'to':'from'."/".$args[1]."/upcoming/1000");
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]."/upcoming/1000");
 						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $prox) {
@@ -60,7 +66,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$this->say("Buses\n".$h);
     			}
 				elseif ($args[0]){
-						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]=='hacia'?'to':'from'."/".$args[1]);						$data=json_decode($getJson);
+						$getJson = $this->fetch("http://api.salasuai.com/buses/location/".$l."/".$args[0]."/".$args[1]);						$data=json_decode($getJson);
 						$h="";
 						foreach($data as $hora){
 						$h="\n".$hora.$h;
