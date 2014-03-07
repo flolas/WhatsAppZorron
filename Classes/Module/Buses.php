@@ -66,7 +66,7 @@ class Buses extends \Library\WhatsApp\Module\Base {
 						$h="\n".$hora.$h;
 						}
 						if($h=="\n" || $h=""){
-							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia")
+							$this->say("No te entiendo :(. Ejemplo de uso: Buses hacia Grecia");
 							return true;
 						}
 						$this->say("Buses\n".$h);
